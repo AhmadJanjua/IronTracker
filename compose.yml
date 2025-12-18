@@ -1,0 +1,11 @@
+services:
+  dev:
+    image: iron-base
+    container_name: iron-dev
+    user: "${UID}:${GID}"
+    working_dir: /app
+    volumes:
+      - ./app:/app
+    ports:
+      - "5173:5173"
+    command: ["bash", "-lc", "pnpm install && pnpm dev --host 0.0.0.0 --port 5173"]
