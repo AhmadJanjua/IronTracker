@@ -41,3 +41,14 @@ function Resource(props) {
 }
 
 render(<App />, document.getElementById('app'));
+
+// Register service worker if browser supports after loading
+if ('serviceWorker' in navigator) {
+	window.addEventListener('load', (): void => {
+		navigator.serviceWorker
+			.register('/service-worker.js')
+			.catch((error: unknown): void => {
+				console.error("Failed to register service worker:", error);
+			});
+	});
+}
